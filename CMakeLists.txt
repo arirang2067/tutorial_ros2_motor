@@ -25,6 +25,10 @@ add_executable(motor_node src/motor_node.cpp)
 target_link_libraries(motor_node pigpiod_if2)
 ament_target_dependencies(motor_node rclcpp)
 
+install(TARGETS
+  motor_node
+  DESTINATION lib/${PROJECT_NAME})
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   ament_lint_auto_find_test_dependencies()
