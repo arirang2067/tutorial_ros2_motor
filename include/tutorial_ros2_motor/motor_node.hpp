@@ -5,79 +5,79 @@
 #include <pigpiod_if2.h>
 #include <fstream>
 
-#define motor1_DIR 19
-#define motor1_PWM 26
-#define motor1_ENA 23
-#define motor1_ENB 24
+#define motor1_dir 19
+#define motor1_pwm 26
+#define motor1_encA 23
+#define motor1_encB 24
 
-#define motor2_DIR 6
-#define motor2_PWM 13
-#define motor2_ENA 27
-#define motor2_ENB 17
+#define motor2_dir 6
+#define motor2_pwm 13
+#define motor2_encA 27
+#define motor2_encB 17
 
 #define PI 3.141592
 
 using namespace std::chrono_literals;
 
-// Text_Input
-void Text_Input(void);
-int PWM_range;
-int PWM_frequency;
-int PWM_limit;
-double Control_cycle;
-int Acceleration_ratio;
-double Wheel_radius;
-double Robot_radius;
-int Encoder_resolution;
-double Wheel_round;
-double Robot_round;
+// LoadParameters
+void LoadParameters(void);
+int pwm_range;
+int pwm_frequency;
+int pwm_limit;
+double control_cycle;
+int acceleration_ratio;
+double wheel_radius;
+double robot_radius;
+int encoder_resolution;
+double wheel_round;
+double robot_round;
 
-// Motor_Setup
-int Motor_Setup(void);
+// InitMotors
+int InitMotors(void);
 int pinum;
-int current_PWM1;
-int current_PWM2;
-bool current_Direction1;
-bool current_Direction2;
+int current_pwm1;
+int current_pwm2;
+bool current_direction1;
+bool current_direction2;
 int acceleration;
 
-// Interrupt_Setting
+// SetInterrupts
 void Interrupt_Setiing(void);
-volatile int EncoderCounter1;
-volatile int EncoderCounter2;
-volatile int EncoderCounter1A;
-volatile int EncoderCounter1B;
-volatile int EncoderCounter2A;
-volatile int EncoderCounter2B;
-volatile int EncoderSpeedCounter1;
-volatile int EncoderSpeedCounter2;
+volatile int encoder_count_1;
+volatile int encoder_count_2;
+volatile int encoder_count_1A;
+volatile int encoder_count_1B;
+volatile int encoder_count_2A;
+volatile int encoder_count_2B;
+volatile int speed_count_1;
+volatile int speed_count2;
 void Interrupt1A(int pi, unsigned user_gpio, unsigned level, uint32_t tick);
 void Interrupt1B(int pi, unsigned user_gpio, unsigned level, uint32_t tick);
 void Interrupt2A(int pi, unsigned user_gpio, unsigned level, uint32_t tick);
 void Interrupt2B(int pi, unsigned user_gpio, unsigned level, uint32_t tick);
-int Motor1_Encoder_Sum();
-int Motor2_Encoder_Sum();
-void Init_Encoder(void);
+int SumMotor1Encoder();
+int SumMotor2Encoder();
+void InitEncoders(void);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Initialize(void);
 
-// Motor_Controller
-void Motor_Controller(int motor_num, bool direction, int pwm);
-void Accel_Controller(int motor_num, bool direction, int desired_pwm);
+// Controller
+void MotorController(int motor_num, bool direction, int pwm);
+void AccelController(int motor_num, bool direction, int desired_pwm);
 
 // Example
 bool switch_direction;
-int Theta_Distance_Flag;
-void Switch_Turn_Example(int PWM1, int PWM2);
-void Theta_Turn(double Theta, int PWM);
-void Distance_Go(double Distance, int PWM);
-void Theta_Distance(double Theta, int Turn_PWM, double Distance, int Go_PWM);
+int theta_distance_flag;
+void SwitchTurn(int pwm1, int pwm2);
+void ThetaTurn(double theta, int pwm);
+void DistanceGo(double distance, int pwm);
+void ThetaTurnDistanceGo(double theta, int turn_pwm, double distance, int go_pwm);
 
-// Utiliy
-int Limit_Function(int pwm);
-double RPM_Value1;
-double RPM_Value2;
-void RPM_Calculator();
-void Motor_View();
+// Utility
+int LimitPwm(int pwm);
+double rpm_value1;
+double rpm_value2;
+void CalculateRpm();
+void InfoMotors();
 
 #endif // MOTOR_NODE_H
