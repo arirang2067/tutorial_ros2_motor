@@ -79,5 +79,15 @@ double rpm_value1;
 double rpm_value2;
 void CalculateRpm();
 void InfoMotors();
+class RosCommunicator : public rclcpp::Node
+{
+public:
+  RosCommunicator();
+
+private:
+  void TimerCallback();
+  rclcpp::TimerBase::SharedPtr timer_;
+  size_t count_;
+};
 
 #endif // MOTOR_NODE_H

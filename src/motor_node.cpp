@@ -462,32 +462,23 @@ void InfoMotors()
   printf("\n");
 }
 
-class RosCommunicator : public rclcpp::Node
+RosCommunicator::RosCommunicator()
+    : Node("tutorial_ros2_motor"), count_(0)
 {
-public:
-  RosCommunicator()
-      : Node("tutorial_ros2_motor"), count_(0)
-  {
-    // publisher_ = this->create_publisher<std_msgs::msg::String>("/tutorial/topic", 10);
-    timer_ = this->create_wall_timer(
-        100ms, std::bind(&RosCommunicator::TimerCallback, this));
-  }
+  timer_ = this->create_wall_timer(
+      100ms, std::bind(&RosCommunicator::TimerCallback, this));
+}
 
-private:
-  void TimerCallback()
-  {
-    // MotorController(1, true, 100);
-    // MotorController(2, true, 100);
-    // AccelController(1, true, 100);
-    // AccelController(2, true, 100);
-    // SwitchTurn(100, 100);
-    // ThetaTurnDistanceGo(180,100,30,110);
-    InfoMotors();
-  }
-  rclcpp::TimerBase::SharedPtr timer_;
-  // rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
-  size_t count_;
-};
+void RosCommunicator::TimerCallback()
+{
+  // MotorController(1, true, 100);
+  // MotorController(2, true, 100);
+  // AccelController(1, true, 100);
+  // AccelController(2, true, 100);
+  // SwitchTurn(100, 100);
+  // ThetaTurnDistanceGo(180,100,30,110);
+  InfoMotors();
+}
 
 int main(int argc, char **argv)
 {
