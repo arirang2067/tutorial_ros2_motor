@@ -114,10 +114,20 @@ void Interrupt1A(int pi, unsigned user_gpio, unsigned level, uint32_t tick)
   (void)user_gpio;
   (void)tick;
   bool is_cw;
-  if ((level == 0 && gpio_read(pinum, motor1_encB) == true) || (level == 1 && gpio_read(pinum, motor1_encB) == false))
-    is_cw = true;
-  else
-    is_cw = false;
+  if (level == 0)
+  {
+    if (motor1_encB = true)
+      is_cw = true;
+    else
+      is_cw = false;
+  }
+  else if (level == 1)
+  {
+    if (motor1_encB = false)
+      is_cw = true;
+    else
+      is_cw = false;
+  }
   if (is_cw)
     encoder_count_1A++;
   else
@@ -131,10 +141,20 @@ void Interrupt1B(int pi, unsigned user_gpio, unsigned level, uint32_t tick)
   (void)user_gpio;
   (void)tick;
   bool is_cw;
-  if ((level == 0 && gpio_read(pinum, motor1_encA) == false) || (level == 1 && gpio_read(pinum, motor1_encA) == true))
-    is_cw = true;
-  else
-    is_cw = false;
+  if (level == 0)
+  {
+    if (motor1_encA = false)
+      is_cw = true;
+    else
+      is_cw = false;
+  }
+  else if (level == 1)
+  {
+    if (motor1_encA = true)
+      is_cw = true;
+    else
+      is_cw = false;
+  }
   if (is_cw)
     encoder_count_1B++;
   else
@@ -148,10 +168,20 @@ void Interrupt2A(int pi, unsigned user_gpio, unsigned level, uint32_t tick)
   (void)user_gpio;
   (void)tick;
   bool is_cw;
-  if ((level == 0 && gpio_read(pinum, motor2_encB) == true) || (level == 1 && gpio_read(pinum, motor2_encB) == false))
-    is_cw = true;
-  else
-    is_cw = false;
+  if (level == 0)
+  {
+    if (motor2_encB = true)
+      is_cw = true;
+    else
+      is_cw = false;
+  }
+  else if (level == 1)
+  {
+    if (motor2_encB = false)
+      is_cw = true;
+    else
+      is_cw = false;
+  }
   if (is_cw)
     encoder_count_2A++;
   else
@@ -165,10 +195,20 @@ void Interrupt2B(int pi, unsigned user_gpio, unsigned level, uint32_t tick)
   (void)user_gpio;
   (void)tick;
   bool is_cw;
-  if ((level == 0 && gpio_read(pinum, motor2_encA) == false) || (level == 1 && gpio_read(pinum, motor2_encA) == true))
-    is_cw = true;
-  else
-    is_cw = false;
+  if (level == 0)
+  {
+    if (motor2_encA = false)
+      is_cw = true;
+    else
+      is_cw = false;
+  }
+  else if (level == 1)
+  {
+    if (motor2_encA = true)
+      is_cw = true;
+    else
+      is_cw = false;
+  }
   if (is_cw)
     encoder_count_2B++;
   else
