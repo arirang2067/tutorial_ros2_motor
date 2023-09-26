@@ -453,12 +453,12 @@ void InfoMotors()
   CalculateRpm();
   printf("\033[2J");
   printf("\033[1;1H");
-  printf("Encoder1A : %5d  ||  Encoder2A : %5d\n", encoder_count_1A, encoder_count_2A);
-  printf("Encoder1B : %5d  ||  Encoder2B : %5d\n", encoder_count_1B, encoder_count_2B);
+  printf("Encoder1A : %5d    ||  Encoder2A : %5d\n", encoder_count_1A, encoder_count_2A);
+  printf("Encoder1B : %5d    ||  Encoder2B : %5d\n", encoder_count_1B, encoder_count_2B);
   printf("RPM1 : %10.0f    ||  RPM2 : %10.0f\n", rpm_value1, rpm_value2);
   printf("PWM1 : %10.0d    ||  PWM2 : %10.0d\n", current_pwm1, current_pwm2);
-  printf("DIR1 :%10.0s     ||  DIR2 :%10.0s\n", current_direction1 ? "CW" : "CCW", current_direction2 ? "CW" : "CCW");
-  printf("ACC  :%10.0d\n", acceleration);
+  printf("DIR1 :%11s    ||  DIR2 :%11s\n", current_direction1 ? "CW" : "CCW", current_direction2 ? "CW" : "CCW");
+  printf("ACC  :%11.0d\n", acceleration);
   printf("\n");
 }
 
