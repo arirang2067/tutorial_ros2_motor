@@ -457,7 +457,7 @@ void InfoMotors()
   printf("Encoder1B : %5d  ||  Encoder2B : %5d\n", encoder_count_1B, encoder_count_2B);
   printf("RPM1 : %10.0f    ||  RPM2 : %10.0f\n", rpm_value1, rpm_value2);
   printf("PWM1 : %10.0d    ||  PWM2 : %10.0d\n", current_pwm1, current_pwm2);
-  printf("DIR1 :%10.0d     ||  DIR2 :%10.0d\n", current_direction1, current_direction2);
+  printf("DIR1 :%s     ||  DIR2 :%s\n", current_direction1 ? "CW" : "CCW", current_direction2 ? "CW" : "CCW");
   printf("ACC  :%10.0d\n", acceleration);
   printf("\n");
 }
