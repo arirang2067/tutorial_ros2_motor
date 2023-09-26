@@ -112,9 +112,13 @@ void Interrupt1A(int pi, unsigned user_gpio, unsigned level, uint32_t tick)
 {
   (void)pi;
   (void)user_gpio;
-  (void)level;
   (void)tick;
-  if (gpio_read(pinum, motor1_dir) == true)
+  bool is_cw;
+  if ((level == 0 && gpio_read(pinum, motor1_encB) == true) || (level == 1 && gpio_read(pinum, motor1_encB) == false))
+    is_cw = true;
+  else
+    is_cw = false;
+  if (is_cw)
     encoder_count_1A++;
   else
     encoder_count_1A--;
@@ -125,9 +129,13 @@ void Interrupt1B(int pi, unsigned user_gpio, unsigned level, uint32_t tick)
 {
   (void)pi;
   (void)user_gpio;
-  (void)level;
   (void)tick;
-  if (gpio_read(pinum, motor1_dir) == true)
+  bool is_cw;
+  if ((level == 0 && gpio_read(pinum, motor1_encA) == false) || (level == 1 && gpio_read(pinum, motor1_encA) == true))
+    is_cw = true;
+  else
+    is_cw = false;
+  if (is_cw)
     encoder_count_1B++;
   else
     encoder_count_1B--;
@@ -138,12 +146,16 @@ void Interrupt2A(int pi, unsigned user_gpio, unsigned level, uint32_t tick)
 {
   (void)pi;
   (void)user_gpio;
-  (void)level;
   (void)tick;
-  if (gpio_read(pinum, motor2_dir) == true)
-    encoder_count_2A--;
+  bool is_cw;
+  if ((level == 0 && gpio_read(pinum, motor2_encB) == true) || (level == 1 && gpio_read(pinum, motor2_encB) == false))
+    is_cw = true;
   else
+    is_cw = false;
+  if (is_cw)
     encoder_count_2A++;
+  else
+    encoder_count_2A--;
   speed_count2++;
 }
 
@@ -151,12 +163,16 @@ void Interrupt2B(int pi, unsigned user_gpio, unsigned level, uint32_t tick)
 {
   (void)pi;
   (void)user_gpio;
-  (void)level;
   (void)tick;
-  if (gpio_read(pinum, motor2_dir) == true)
-    encoder_count_2B--;
+  bool is_cw;
+  if ((level == 0 && gpio_read(pinum, motor2_encA) == false) || (level == 1 && gpio_read(pinum, motor2_encA) == true))
+    is_cw = true;
   else
+    is_cw = false;
+  if (is_cw)
     encoder_count_2B++;
+  else
+    encoder_count_2B--;
   speed_count2++;
 }
 
