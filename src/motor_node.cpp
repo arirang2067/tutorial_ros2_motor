@@ -336,18 +336,18 @@ void ThetaTurn(double theta, int pwm)
   if (theta > 0)
   {
     local_encoder = (encoder_resolution * 4 / 360) * (robot_round / wheel_round) * theta;
-    MotorController(1, false, local_pwm);
-    MotorController(2, false, local_pwm);
-    // AccelController(1, false, local_pwm);
-    // AccelController(2, false, local_pwm);
-  }
-  else
-  {
-    local_encoder = -(encoder_resolution * 4 / 360) * (robot_round / wheel_round) * theta;
     MotorController(1, true, local_pwm);
     MotorController(2, true, local_pwm);
     // AccelController(1, true, local_pwm);
     // AccelController(2, true, local_pwm);
+  }
+  else
+  {
+    local_encoder = -(encoder_resolution * 4 / 360) * (robot_round / wheel_round) * theta;
+    MotorController(1, false, local_pwm);
+    MotorController(2, false, local_pwm);
+    // AccelController(1, false, local_pwm);
+    // AccelController(2, false, local_pwm);
   }
 
   if (encoder_count_1 > local_encoder)
@@ -380,17 +380,17 @@ void DistanceGo(double distance, int pwm)
   {
     if (direction == true)
     {
-      MotorController(1, false, local_pwm);
-      MotorController(2, true, local_pwm);
-      // AccelController(1, false, local_pwm);
-      // AccelController(2, true, local_pwm);
-    }
-    else
-    {
       MotorController(1, true, local_pwm);
       MotorController(2, false, local_pwm);
       // AccelController(1, true, local_pwm);
       // AccelController(2, false, local_pwm);
+    }
+    else
+    {
+      MotorController(1, false, local_pwm);
+      MotorController(2, true, local_pwm);
+      // AccelController(1, false, local_pwm);
+      // AccelController(2, true, local_pwm);
     }
   }
   else
