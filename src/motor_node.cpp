@@ -486,13 +486,13 @@ void RosCommunicator::TeleopCallback(const std_msgs::msg::Int64MultiArray::Share
 {
   bool tmp_dir1, tmp_dir2;
   if (msg->data[0] == 0)
-    tmp_dir1 = false;
-  else
     tmp_dir1 = true;
-  if (msg->data[1] == 0)
-    tmp_dir2 = false;
   else
+    tmp_dir1 = false;
+  if (msg->data[1] == 0)
     tmp_dir2 = true;
+  else
+    tmp_dir2 = false;
 
   AccelController(1, tmp_dir1, msg->data[2]);
   AccelController(2, tmp_dir2, msg->data[3]);
