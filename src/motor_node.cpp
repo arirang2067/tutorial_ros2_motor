@@ -467,6 +467,8 @@ RosCommunicator::RosCommunicator()
 {
   timer_ = this->create_wall_timer(
       100ms, std::bind(&RosCommunicator::TimerCallback, this));
+  subscription_ = this->create_subscription<std_msgs::msg::Int64MultiArray>(
+      "/tutorial/teleop", 10, std::bind(&RosCommunicator::TeleopCallback, this, _1));
 }
 
 void RosCommunicator::TimerCallback()
@@ -478,6 +480,23 @@ void RosCommunicator::TimerCallback()
   // SwitchTurn(100, 100);
   // ThetaTurnDistanceGo(180,100,30,110);
   InfoMotors();
+}
+
+void RosCommunicator::TeleopCallback(const std_msgs::msg::Int64MultiArray::SharedPtr msg)
+{
+  bool tmp_dir1, tmp_dir2;
+  if (msg->data[0] == 0)
+    tmp_dir1 = false;
+  else
+    tmp_dir1 = true;
+  if (msg->data[1] == 0)
+    tmp_dir2 = false;
+  else
+    tmp_dir2 = true;
+
+  AccelController(1, tmp_dir1, msg->data[2]);
+  AccelController(2, tmp_dir2, msg->data[3]);
+  RCLCPP_INFO_STREAM(this->get_logger(), msg);
 }
 
 int main(int argc, char **argv)

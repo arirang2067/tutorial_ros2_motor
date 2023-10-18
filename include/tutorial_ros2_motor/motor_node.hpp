@@ -2,6 +2,7 @@
 #define MOTOR_NODE_H
 
 #include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/int64_multi_array.hpp"
 #include <pigpiod_if2.h>
 #include <fstream>
 
@@ -18,6 +19,7 @@
 #define PI 3.141592
 
 using namespace std::chrono_literals;
+using std::placeholders::_1;
 
 // LoadParameters
 void LoadParameters(void);
@@ -86,7 +88,9 @@ public:
 
 private:
   void TimerCallback();
+  void TeleopCallback(const std_msgs::msg::Int64MultiArray::SharedPtr msg);
   rclcpp::TimerBase::SharedPtr timer_;
+  rclcpp::Subscription<std_msgs::msg::Int64MultiArray>::SharedPtr subscription_;
   size_t count_;
 };
 
