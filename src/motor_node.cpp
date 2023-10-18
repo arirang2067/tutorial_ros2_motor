@@ -496,7 +496,6 @@ void RosCommunicator::TeleopCallback(const std_msgs::msg::Int64MultiArray::Share
 
   AccelController(1, tmp_dir1, msg->data[2]);
   AccelController(2, tmp_dir2, msg->data[3]);
-  RCLCPP_INFO_STREAM(this->get_logger(), msg);
 }
 
 int main(int argc, char **argv)
