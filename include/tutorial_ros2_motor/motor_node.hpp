@@ -5,6 +5,7 @@
 #include "std_msgs/msg/int64_multi_array.hpp"
 #include <pigpiod_if2.h>
 #include <fstream>
+#include <ament_index_cpp/get_package_share_directory.hpp>
 
 #define motor1_dir 19
 #define motor1_pwm 26

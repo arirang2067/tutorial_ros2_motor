@@ -19,12 +19,16 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(ament_index_cpp REQUIRED)
 
-include_directories(include)
+include_directories(
+  include
+  ${ament_index_cpp_INCLUDE_DIRS}
+  )
 
 add_executable(motor_node src/motor_node.cpp)
 target_link_libraries(motor_node pigpiod_if2)
-ament_target_dependencies(motor_node rclcpp std_msgs)
+ament_target_dependencies(motor_node rclcpp std_msgs ${ament_index_cpp_LIBRARIES})
 
 add_executable(teleop_node src/teleop_node.cpp)
 ament_target_dependencies(teleop_node rclcpp std_msgs)

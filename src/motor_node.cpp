@@ -7,7 +7,7 @@
 
 void LoadParameters(void)
 {
-  std::ifstream inFile("/home/ubuntu/robot_ws/src/tutorial_ros2_motor/data/motor_input.txt");
+  std::ifstream inFile(ament_index_cpp::get_package_share_directory("tutorial_ros2_motor") + "/config/motor_input.txt");
   if (!inFile.is_open())
   {
     RCLCPP_ERROR(rclcpp::get_logger("motor_node"), "Unable to open the file");
