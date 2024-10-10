@@ -36,7 +36,11 @@ ament_target_dependencies(teleop_node rclcpp std_msgs)
 install(TARGETS
   motor_node
   teleop_node
-  DESTINATION lib/${PROJECT_NAME})
+  DESTINATION lib/${PROJECT_NAME}
+)
+install(DIRECTORY
+  config
+  DESTINATION share/${PROJECT_NAME}/)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

@@ -7,10 +7,12 @@
 
 void LoadParameters(void)
 {
-  std::ifstream inFile(ament_index_cpp::get_package_share_directory("tutorial_ros2_motor") + "/config/motor_input.txt");
+  std::string motor_parameters_path = ament_index_cpp::get_package_share_directory("tutorial_ros2_motor") + "/config/motor_parameters.txt";
+  std::ifstream inFile(motor_parameters_path.c_str());
   if (!inFile.is_open())
   {
     RCLCPP_ERROR(rclcpp::get_logger("motor_node"), "Unable to open the file");
+    RCLCPP_ERROR_STREAM(rclcpp::get_logger("motor_node"), "file address : " << motor_parameters_path);
     return;
   }
 
